@@ -30,6 +30,7 @@ import ws.schild.jave.encode.VideoAttributes;
 import ws.schild.jave.filters.FilterChain;
 import ws.schild.jave.filters.FilterGraph;
 import ws.schild.jave.filters.MediaConcatFilter;
+import ws.schild.jave.filters.ScaleFilter;
 import ws.schild.jave.info.VideoSize;
 
 /** @author a.schild */
@@ -156,6 +157,7 @@ public class ConcatEncoderTest extends AMediaTest {
     FilterGraph complexFiltergraph= new FilterGraph();
     FilterChain fc= new FilterChain();
     fc.addFilter(new MediaConcatFilter(src.size(), false, true));
+    fc.addFilter(new ScaleFilter(new VideoSize(1280, 720)));
     complexFiltergraph.addChain(fc);
     VideoAttributes video = new VideoAttributes();
     video.setComplexFiltergraph(complexFiltergraph);
