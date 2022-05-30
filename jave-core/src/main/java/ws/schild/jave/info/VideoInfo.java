@@ -28,132 +28,142 @@ import java.util.Map;
  */
 public class VideoInfo {
 
-  /** The video stream decoder name. */
-  private String decoder;
+    /**
+     * The video stream decoder name.
+     */
+    private String decoder;
 
-  /** The video size. If null this information is not available. */
-  private VideoSize size = null;
+    /**
+     * The video size. If null this information is not available.
+     */
+    private VideoSize size = null;
 
-  /** The video stream (average) bit rate. If less than 0, this information is not available. */
-  private int bitRate = -1;
+    /**
+     * The video stream (average) bit rate. If less than 0, this information is not available.
+     */
+    private int bitRate = -1;
 
-  /** The video frame rate. If less than 0 this information is not available. */
-  private float frameRate = -1;
+    /**
+     * The video frame rate. If less than 0 this information is not available.
+     */
+    private float frameRate = -1;
 
-  /** The video metadata. */
-  private Map<String, String> metadata = new HashMap<>();
+    /**
+     * The video metadata.
+     */
+    private Map<String, String> metadata = new HashMap<>();
 
-  /**
-   * Returns the video stream decoder name.
-   *
-   * @return The video stream decoder name.
-   */
-  public String getDecoder() {
-    return decoder;
-  }
+    /**
+     * Returns the video stream decoder name.
+     *
+     * @return The video stream decoder name.
+     */
+    public String getDecoder() {
+        return decoder;
+    }
 
-  /**
-   * Sets the video stream decoder name.
-   *
-   * @param codec The video stream decoder name.
-   * @return this instance
-   */
-  public VideoInfo setDecoder(String codec) {
-    this.decoder = codec;
-    return this;
-  }
+    /**
+     * Sets the video stream decoder name.
+     *
+     * @param codec The video stream decoder name.
+     * @return this instance
+     */
+    public VideoInfo setDecoder(String codec) {
+        this.decoder = codec;
+        return this;
+    }
 
-  /**
-   * Returns the video size. If null this information is not available.
-   *
-   * @return the size The video size.
-   */
-  public VideoSize getSize() {
-    return size;
-  }
+    /**
+     * Returns the video size. If null this information is not available.
+     *
+     * @return the size The video size.
+     */
+    public VideoSize getSize() {
+        return size;
+    }
 
-  /**
-   * Sets the video size.
-   *
-   * @param size The video size.
-   * @return this instance
-   */
-  public VideoInfo setSize(VideoSize size) {
-    this.size = size;
-    return this;
-  }
+    /**
+     * Sets the video size.
+     *
+     * @param size The video size.
+     * @return this instance
+     */
+    public VideoInfo setSize(VideoSize size) {
+        this.size = size;
+        return this;
+    }
 
-  /**
-   * Returns the video frame rate. If less than 0 this information is not available.
-   *
-   * @return The video frame rate.
-   */
-  public float getFrameRate() {
-    return frameRate;
-  }
+    /**
+     * Returns the video frame rate. If less than 0 this information is not available.
+     *
+     * @return The video frame rate.
+     */
+    public float getFrameRate() {
+        return frameRate;
+    }
 
-  /**
-   * Sets the video frame rate.
-   *
-   * @param frameRate The video frame rate.
-   * @return this instance
-   */
-  public VideoInfo setFrameRate(float frameRate) {
-    this.frameRate = frameRate;
-    return this;
-  }
+    /**
+     * Sets the video frame rate.
+     *
+     * @param frameRate The video frame rate.
+     * @return this instance
+     */
+    public VideoInfo setFrameRate(float frameRate) {
+        this.frameRate = frameRate;
+        return this;
+    }
 
-  /**
-   * Returns the video stream (average) bit rate. If less than 0, this information is not available.
-   *
-   * @return The video stream (average) bit rate.
-   */
-  public int getBitRate() {
-    return bitRate;
-  }
+    /**
+     * Returns the video stream (average) bit rate. If less than 0, this information is not available.
+     *
+     * @return The video stream (average) bit rate.
+     */
+    public int getBitRate() {
+        return bitRate;
+    }
 
-  /**
-   * Sets the video stream (average) bit rate.
-   *
-   * @param bitRate The video stream (average) bit rate.
-   * @return this instance
-   */
-  public VideoInfo setBitRate(int bitRate) {
-    this.bitRate = bitRate;
-    return this;
-  }
+    /**
+     * Sets the video stream (average) bit rate.
+     *
+     * @param bitRate The video stream (average) bit rate.
+     * @return this instance
+     */
+    public VideoInfo setBitRate(int bitRate) {
+        this.bitRate = bitRate;
+        return this;
+    }
 
-  /**
-   * Returns the video metadata.
-   *
-   * @return The video metadata.
-   */
-  public Map<String, String> getMetadata() {
-    return metadata;
-  }
+    /**
+     * Returns the video metadata.
+     *
+     * @return The video metadata.
+     */
+    public Map<String, String> getMetadata() {
+        return metadata;
+    }
 
-  /**
-   * Sets the video metadata.
-   *
-   * @param metadata The video metadata.
-   * @return this instance
-   */
-  public VideoInfo setMetadata(Map<String, String> metadata) {
-    this.metadata = metadata;
-    return this;
-  }
+    /**
+     * Sets the video metadata.
+     *
+     * @param metadata The video metadata.
+     * @return this instance
+     */
+    public VideoInfo setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
+        return this;
+    }
 
-  @Override
-  public String toString() {
-    return getClass().getName()
-        + " (decoder="
-        + decoder
-        + ", size="
-        + size
-        + ", bitRate="
-        + bitRate
-        + ", frameRate="
-        + frameRate
-        + ")";
-  }
+    @Override
+    public String toString() {
+        return getClass().getName()
+                + " (decoder="
+                + decoder
+                + ", size="
+                + size
+                + ", bitRate="
+                + bitRate
+                + ", frameRate="
+                + frameRate
+                + ")";
+    }
 }

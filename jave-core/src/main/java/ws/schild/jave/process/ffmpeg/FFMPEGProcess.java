@@ -1,8 +1,8 @@
 package ws.schild.jave.process.ffmpeg;
 
-import java.util.stream.Stream;
-
 import ws.schild.jave.process.ProcessWrapper;
+
+import java.util.stream.Stream;
 
 /**
  * The standard FFMPEGProcess - enhances the ProcessWrapper by always suppressing the FFMPEG banner.
@@ -11,12 +11,12 @@ import ws.schild.jave.process.ProcessWrapper;
  */
 public class FFMPEGProcess extends ProcessWrapper {
 
-  public FFMPEGProcess(String ffmpegExecutablePath) {
-    super(ffmpegExecutablePath);
-  }
+    public FFMPEGProcess(String ffmpegExecutablePath) {
+        super(ffmpegExecutablePath);
+    }
 
-  @Override
-  protected Stream<String> enhanceArguments(Stream<String> execArgs) {
-    return Stream.concat(execArgs, Stream.of("-hide_banner"));
-  }
+    @Override
+    protected Stream<String> enhanceArguments(Stream<String> execArgs) {
+        return Stream.concat(execArgs, Stream.of("-hide_banner"));
+    }
 }
