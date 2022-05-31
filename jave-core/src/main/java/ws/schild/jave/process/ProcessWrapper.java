@@ -108,7 +108,7 @@ public class ProcessWrapper implements AutoCloseable {
         List<String> execList = execArgs.collect(Collectors.toList());
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("About to execute {}", execList.stream().collect(Collectors.joining(" ")));
+            LOG.debug("About to execute {}", String.join(" ", execList));
         }
 
         Runtime runtime = Runtime.getRuntime();

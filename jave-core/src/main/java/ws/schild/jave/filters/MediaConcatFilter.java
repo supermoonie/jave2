@@ -5,10 +5,7 @@
  */
 package ws.schild.jave.filters;
 
-import ws.schild.jave.filters.Filter;
-
 /**
- *
  * @author a.schild
  */
 public class MediaConcatFilter extends Filter {
@@ -16,7 +13,7 @@ public class MediaConcatFilter extends Filter {
     /**
      * Concat all input files and map first video and audio stream
      * Fails when a media has no video or audio stream
-     * 
+     *
      * @param nSources number of input sources
      */
     public MediaConcatFilter(int nSources) {
@@ -27,8 +24,8 @@ public class MediaConcatFilter extends Filter {
     /**
      * Concat all input files and map first video and audio stream
      * Fails when a media has no video or audio stream
-     * 
-     * @param nSources number of input sources
+     *
+     * @param nSources    number of input sources
      * @param concatVideo Should we output the video stream
      * @param concatAudio Should we output the audio stream
      */
@@ -36,48 +33,35 @@ public class MediaConcatFilter extends Filter {
         super("concat");
         initFilter(nSources, concatVideo, concatAudio);
     }
-    
-    protected void initFilter(int nSources, boolean concatVideo, boolean concatAudio)
-    {
-        String destinationDescription= "";
-        if (concatVideo && concatAudio)
-        {
-            destinationDescription=  "v=1:a=1";
-        }
-        else if (concatVideo)
-        {
-            destinationDescription=  "v=1:a=0";
-        }
-        else if (concatAudio)
-        {
-            destinationDescription=  "v=0:a=1";
+
+    protected void initFilter(int nSources, boolean concatVideo, boolean concatAudio) {
+        String destinationDescription = "";
+        if (concatVideo && concatAudio) {
+            destinationDescription = "v=1:a=1";
+        } else if (concatVideo) {
+            destinationDescription = "v=1:a=0";
+        } else if (concatAudio) {
+            destinationDescription = "v=0:a=1";
         }
         initFilter(nSources, concatVideo, concatAudio, destinationDescription);
     }
-    
-    protected void initFilter(int nSources, 
-            boolean concatVideo, 
-            boolean concatAudio, 
-            String destinationDescription)
-    {
+
+    protected void initFilter(int nSources,
+                              boolean concatVideo,
+                              boolean concatAudio,
+                              String destinationDescription) {
         StringBuilder sb = new StringBuilder();
-        for (int i=0; i < nSources; i++)
-        {
-            if (i > 0)
-            {
+        for (int i = 0; i < nSources; i++) {
+            if (i > 0) {
                 sb.append("] [");
             }
             sb.append(Integer.toString(i));
-            if (concatVideo)
-            {
+            if (concatVideo) {
                 sb.append(":v:0");
-                if (concatAudio)
-                {
+                if (concatAudio) {
                     sb.append("] [").append(Integer.toString(i)).append(":a:0");
                 }
-            }
-            else if (concatAudio)
-            {
+            } else if (concatAudio) {
                 sb.append(":a:0");
             }
         }
