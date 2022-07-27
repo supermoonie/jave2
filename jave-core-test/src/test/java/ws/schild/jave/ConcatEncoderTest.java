@@ -124,7 +124,7 @@ public class ConcatEncoderTest extends AMediaTest {
         FilterGraph complexFiltergraph = new FilterGraph();
         FilterChain fc = new FilterChain();
         fc.addFilter(new MediaConcatFilter(src.size()));
-        fc.addFilter(new DrawtextFilter("hello world", "10", "10", new File(getResourceSourcePath(), "微软雅黑.ttc"), 18d, new Color("FF0000")));
+        fc.addFilter(new DrawtextFilter("hello world", "10", "10", new File(getResourceSourcePath(), "微软雅黑.ttc"), 18d, new Color("FF0000", "")));
         complexFiltergraph.addChain(fc);
         video.setComplexFiltergraph(complexFiltergraph);
 

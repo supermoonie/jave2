@@ -5,45 +5,53 @@
  */
 package ws.schild.jave;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import ws.schild.jave.info.MultimediaInfo;
 import ws.schild.jave.progress.EncoderProgressListener;
 
-/** @author a.schild */
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * @author a.schild
+ */
 public class PListener implements EncoderProgressListener {
-  private MultimediaInfo _info = null;
-  private final List<String> _messages = new LinkedList<>();
-  private final List<Integer> _progress = new LinkedList<>();
+    private MultimediaInfo _info = null;
+    private final List<String> _messages = new LinkedList<>();
+    private final List<Integer> _progress = new LinkedList<>();
 
-  @Override
-  public void sourceInfo(MultimediaInfo info) {
-    _info = info;
-  }
+    @Override
+    public void sourceInfo(MultimediaInfo info) {
+        _info = info;
+    }
 
-  @Override
-  public void progress(int permil) {
-    _progress.add(permil);
-  }
+    @Override
+    public void progress(int permil) {
+        _progress.add(permil);
+    }
 
-  @Override
-  public void message(String message) {
-    _messages.add(message);
-  }
+    @Override
+    public void message(String message) {
+        _messages.add(message);
+    }
 
-  /** @return the _info */
-  public MultimediaInfo getInfo() {
-    return _info;
-  }
+    /**
+     * @return the _info
+     */
+    public MultimediaInfo getInfo() {
+        return _info;
+    }
 
-  /** @return the _messages */
-  public List<String> getMessages() {
-    return _messages;
-  }
+    /**
+     * @return the _messages
+     */
+    public List<String> getMessages() {
+        return _messages;
+    }
 
-  /** @return the _progress */
-  public List<Integer> getProgress() {
-    return _progress;
-  }
+    /**
+     * @return the _progress
+     */
+    public List<Integer> getProgress() {
+        return _progress;
+    }
 }

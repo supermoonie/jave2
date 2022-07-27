@@ -6,13 +6,13 @@
     <version>3.3.1</version>
     <artifactId>jave-nativebin-win32</artifactId>
     <name>Jave windows 32 bit native package</name>
-    <description>The JAVE (Java Audio Video Encoder) library is Java wrapper on the 
-        ffmpeg project. Developers can take take advantage of JAVE2 to transcode 
-        audio and video files from a format to another. In example you can transcode 
-        an AVI file to a MPEG one, you can change a DivX video stream into a 
-        (youtube like) Flash FLV one, you can convert a WAV audio file to a MP3 or 
-        a Ogg Vorbis one, you can separate and transcode audio and video tracks, 
-        you can resize videos, changing their sizes and proportions and so on. 
+    <description>The JAVE (Java Audio Video Encoder) library is Java wrapper on the
+        ffmpeg project. Developers can take take advantage of JAVE2 to transcode
+        audio and video files from a format to another. In example you can transcode
+        an AVI file to a MPEG one, you can change a DivX video stream into a
+        (youtube like) Flash FLV one, you can convert a WAV audio file to a MP3 or
+        a Ogg Vorbis one, you can separate and transcode audio and video tracks,
+        you can resize videos, changing their sizes and proportions and so on.
         Many other formats, containers and operations are supported by JAVE2.</description>
     <url>https://github.com/a-schild/jave2</url>
         <licenses>
@@ -38,8 +38,6 @@
         <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
-        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <maven-scm-provider-gitexe.version>1.11.2</maven-scm-provider-gitexe.version>
         <junit-jupiter-api.version>5.4.2</junit-jupiter-api.version>
@@ -118,33 +116,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>${maven-gpg-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -185,20 +156,7 @@
             </activation>
             <build>
                 <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven-gpg-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
+
                 </plugins>
             </build>
         </profile>

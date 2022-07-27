@@ -447,7 +447,7 @@ public class Encoder {
         globalOptions.set(index, arg);
     }
 
-    public static EncodingArgument setOptionAtIndex(Integer index) {
+    public static EncodingArgument getOptionAtIndex(Integer index) {
         return globalOptions.get(index);
     }
 
