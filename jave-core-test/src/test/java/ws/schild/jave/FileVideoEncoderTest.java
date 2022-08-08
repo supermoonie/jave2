@@ -88,21 +88,20 @@ public class FileVideoEncoderTest extends AMediaTest {
     @Test
     public void testEncodeVideo2() throws Exception {
         System.out.println("testEncodeVideo2");
-        File source = new File(getResourceSourcePath(), "dance1.avi");
+        File source = new File(getResourceSourcePath(), "size2.mp4");
         File target = new File(getResourceTargetPath(), "testEncodeVideo2.3gp");
         if (target.exists()) {
             target.delete();
         }
         AudioAttributes audio = new AudioAttributes();
-        audio.setCodec("libfaac");
-        audio.setBitRate(64000);
-        audio.setSamplingRate(6400);
-        audio.setChannels(2);
+//        audio.setBitRate(64000);
+        audio.setSamplingRate(8000);
+//        audio.setChannels(2);
         VideoAttributes video = new VideoAttributes();
-        video.setCodec("mpeg4");
-        video.setBitRate(60000);
-        video.setFrameRate(15);
-        video.setSize(new VideoSize(160, 120));
+        video.setCodec("h264_nvenc");
+//        video.setBitRate(60000);
+//        video.setFrameRate(15);
+//        video.setSize(new VideoSize(160, 120));
         EncodingAttributes attrs = new EncodingAttributes();
         attrs.setOutputFormat("3gp");
         attrs.setAudioAttributes(audio);

@@ -183,6 +183,8 @@ public class MultimediaObjectTest extends AMediaTest {
 		File file = new File(getResourceSourcePath(), "small.mp4");
 		MultimediaObject instance = new MultimediaObject(file);
 		MultimediaInfo result = instance.getInfo();
+        System.out.println("decoder: " + result.getVideo().getDecoder());
+        System.out.println("format: " + result.getFormat());
 
 		assertEquals("mov", result.getFormat());
 		assertEquals(5570, result.getDuration());

@@ -349,8 +349,8 @@ public class Encoder {
         encode(src, target, attributes, listener);
     }
 
-    private static List<EncodingArgument> globalOptions =
-            new ArrayList<EncodingArgument>(Arrays.asList(
+    private static final List<EncodingArgument> GLOBAL_OPTIONS =
+            new ArrayList<>(Arrays.asList(
                     new ValueArgument(ArgType.GLOBAL, "--filter_thread",
                             ea -> ea.getFilterThreads().map(Object::toString)),
                     new ValueArgument(ArgType.GLOBAL, "-ss", ea -> ea.getOffset().map(Object::toString)),
@@ -358,7 +358,7 @@ public class Encoder {
                             ea -> ea.getDecodingThreads().map(Object::toString)),
                     new PredicateArgument(ArgType.INFILE, "-loop", "1",
                             ea -> ea.getLoop() && ea.getDuration().isPresent()),
-                    new ValueArgument(ArgType.INFILE, "-f", ea -> ea.getInputFormat()),
+                    new ValueArgument(ArgType.INFILE, "-f", EncodingAttributes::getInputFormat),
                     new ValueArgument(ArgType.INFILE, "-safe", ea -> ea.getSafe().map(Object::toString)),
                     new ValueArgument(ArgType.OUTFILE, "-t", ea -> ea.getDuration().map(Object::toString)),
                     // Video Options
@@ -436,19 +436,19 @@ public class Encoder {
             );
 
     public static void addOptionAtIndex(EncodingArgument arg, Integer index) {
-        globalOptions.add(index, arg);
+        GLOBAL_OPTIONS.add(index, arg);
     }
 
     public static void removeOptionAtIndex(Integer index) {
-        globalOptions.remove(index);
+        GLOBAL_OPTIONS.remove(index);
     }
 
     public static void setOptionAtIndex(EncodingArgument arg, Integer index) {
-        globalOptions.set(index, arg);
+        GLOBAL_OPTIONS.set(index, arg);
     }
 
     public static EncodingArgument getOptionAtIndex(Integer index) {
-        return globalOptions.get(index);
+        return GLOBAL_OPTIONS.get(index);
     }
 
     /**
@@ -515,7 +515,7 @@ public class Encoder {
         ffmpeg = locator.createExecutor();
 
         // Set global options
-        globalOptions
+        GLOBAL_OPTIONS
                 .stream()
                 .filter(ea -> ArgType.GLOBAL.equals(ea.getArgType()))
                 .flatMap(eArg -> eArg.getArguments(attributes))
@@ -529,7 +529,7 @@ public class Encoder {
         }
 
         // Set input options, must be before -i argument
-        globalOptions
+        GLOBAL_OPTIONS
                 .stream()
                 .filter(ea -> ArgType.INFILE.equals(ea.getArgType()))
                 .flatMap(eArg -> eArg.getArguments(attributes))
@@ -549,7 +549,7 @@ public class Encoder {
                 .forEach(ffmpeg::addArgument);
 
         // Set output options. Must be after the -i and before the outfile target
-        globalOptions
+        GLOBAL_OPTIONS
                 .stream()
                 .filter(ea -> ArgType.OUTFILE.equals(ea.getArgType()))
                 .flatMap(eArg -> eArg.getArguments(attributes))
