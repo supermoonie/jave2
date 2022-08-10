@@ -21,6 +21,7 @@ package ws.schild.jave.process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -42,6 +43,11 @@ public class ProcessWrapper implements AutoCloseable {
      * The path of the ffmpeg executable.
      */
     private final String ffmpegExecutablePath;
+
+    /**
+     * The path of the folder exec
+     */
+    private File execFolder;
 
     /**
      * Arguments for the executable.
@@ -111,12 +117,15 @@ public class ProcessWrapper implements AutoCloseable {
             LOG.debug("About to execute {}", String.join(" ", execList));
         }
 
-        Runtime runtime = Runtime.getRuntime();
-        ffmpeg = runtime.exec(execList.toArray(new String[0]));
-
+        ProcessBuilder pb = new ProcessBuilder(execList.toArray(new String[0]));
+        if (null != execFolder) {
+            pb.directory(execFolder);
+        }
+        pb.redirectErrorStream(true);
+        ffmpeg = pb.start();
         if (destroyOnRuntimeShutdown) {
             ffmpegKiller = new ProcessKiller(ffmpeg);
-            runtime.addShutdownHook(ffmpegKiller);
+            Runtime.getRuntime().addShutdownHook(ffmpegKiller);
         }
 
         if (openIOStreams) {
@@ -215,6 +224,10 @@ public class ProcessWrapper implements AutoCloseable {
             runtime.removeShutdownHook(ffmpegKiller);
             ffmpegKiller = null;
         }
+    }
+
+    public void setExecFolder(File execFolder) {
+        this.execFolder = execFolder;
     }
 
     /**

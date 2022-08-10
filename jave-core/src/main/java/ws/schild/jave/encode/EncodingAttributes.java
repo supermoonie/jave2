@@ -79,6 +79,8 @@ public class EncodingAttributes implements Serializable {
   /** Number of threads to use for encoding (if supported by codec) */
   private Integer encodingThreads = null;
 
+  private boolean streamLoop = false;
+
   /** Should the input be treated as a loop */
   private boolean loop = false;
 
@@ -199,6 +201,14 @@ public class EncodingAttributes implements Serializable {
   public EncodingAttributes setDuration(Float duration) {
     this.duration = duration;
     return this;
+  }
+
+  public boolean getStreamLoop() {
+    return streamLoop;
+  }
+
+  public void setStreamLoop(boolean streamLoop) {
+    this.streamLoop = streamLoop;
   }
 
   /**

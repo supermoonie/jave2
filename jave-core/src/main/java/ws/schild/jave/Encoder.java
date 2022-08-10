@@ -356,6 +356,8 @@ public class Encoder {
                     new ValueArgument(ArgType.GLOBAL, "-ss", ea -> ea.getOffset().map(Object::toString)),
                     new ValueArgument(ArgType.INFILE, "-threads",
                             ea -> ea.getDecodingThreads().map(Object::toString)),
+                    new PredicateArgument(ArgType.INFILE, "-stream_loop", "1",
+                            EncodingAttributes::getStreamLoop),
                     new PredicateArgument(ArgType.INFILE, "-loop", "1",
                             ea -> ea.getLoop() && ea.getDuration().isPresent()),
                     new ValueArgument(ArgType.INFILE, "-f", EncodingAttributes::getInputFormat),
@@ -423,11 +425,11 @@ public class Encoder {
                             ea -> ea.getAudioAttributes()
                                     .flatMap(AudioAttributes::getQuality)
                                     .map(Object::toString)),
-                    new ValueArgument(ArgType.OUTFILE, "-f", ea -> ea.getOutputFormat()),
+                    new ValueArgument(ArgType.OUTFILE, "-f", EncodingAttributes::getOutputFormat),
                     new ValueArgument(ArgType.OUTFILE, "-threads",
                             ea -> ea.getEncodingThreads().map(Object::toString)),
                     new PredicateArgument(ArgType.OUTFILE, "-map_metadata", "0",
-                            ea -> ea.isMapMetaData()),
+                            EncodingAttributes::isMapMetaData),
                     new ValueArgument(ArgType.OUTFILE, "-pix_fmt",
                             ea -> ea.getVideoAttributes().flatMap(VideoAttributes::getPixelFormat)),
                     new ValueArgument(ArgType.OUTFILE, "-vsync",
@@ -439,7 +441,7 @@ public class Encoder {
         GLOBAL_OPTIONS.add(index, arg);
     }
 
-    public static void removeOptionAtIndex(Integer index) {
+    public static void removeOptionAtIndex(int index) {
         GLOBAL_OPTIONS.remove(index);
     }
 
