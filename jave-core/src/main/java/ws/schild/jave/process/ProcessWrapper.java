@@ -21,10 +21,7 @@ package ws.schild.jave.process;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,6 +95,28 @@ public class ProcessWrapper implements AutoCloseable {
         args.add(arg);
     }
 
+    public boolean exec() throws IOException {
+        try {
+            this.execute();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
+            long lineNumber = 0;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lineNumber++;
+                LOG.debug("line: {}, {}", lineNumber, line);
+                if (Thread.currentThread().isInterrupted()) {
+                    this.destroy();
+                    return false;
+                }
+            }
+            int code = getProcessExitCode();
+            LOG.debug("ffmpeg exit code: " + code);
+            return code == 0;
+        } finally {
+            destroy();
+        }
+    }
+
     /**
      * Executes the ffmpeg process with the previous given arguments.
      *
@@ -121,7 +140,7 @@ public class ProcessWrapper implements AutoCloseable {
         if (null != execFolder) {
             pb.directory(execFolder);
         }
-        pb.redirectErrorStream(true);
+        pb.redirectErrorStream(false);
         ffmpeg = pb.start();
         if (destroyOnRuntimeShutdown) {
             ffmpegKiller = new ProcessKiller(ffmpeg);
