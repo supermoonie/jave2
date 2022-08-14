@@ -172,9 +172,9 @@ public class MultimediaObject {
                 RBufferedReader reader =
                         new RBufferedReader(new InputStreamReader(ffmpeg.getErrorStream()));
                 if (isURL()) {
-                    return parseMultimediaInfo(inputURL.toString(), reader);
+                    return parseMultimediaInfo(null, inputURL.toString(), reader);
                 } else {
-                    return parseMultimediaInfo(inputFile.getAbsolutePath(), reader);
+                    return parseMultimediaInfo(inputFile, inputFile.getAbsolutePath(), reader);
                 }
             } finally {
                 ffmpeg.destroy();
@@ -198,7 +198,7 @@ public class MultimediaObject {
      * TODO: Refactor all parsing logic to a versioned parsing utility so we can detect FFMPEG version
      * programmatically/support multiple runtime versions and consolidate parsing in one location.
      */
-    private MultimediaInfo parseMultimediaInfo(String source, RBufferedReader reader)
+    private MultimediaInfo parseMultimediaInfo(File inputFile, String source, RBufferedReader reader)
             throws InputFormatException, EncoderException {
         Pattern p1 = Pattern.compile("^\\s*Input #0, (\\w+).+$\\s*", Pattern.CASE_INSENSITIVE);
         Pattern p21 = Pattern.compile("^\\s*Duration:.*$", Pattern.CASE_INSENSITIVE);
@@ -231,6 +231,7 @@ public class MultimediaObject {
                         if (m.matches()) {
                             String format = m.group(1);
                             info = new MultimediaInfo();
+                            info.setFile(inputFile);
                             info.setFormat(format);
                             step++;
                         }

@@ -18,6 +18,7 @@
  */
 package ws.schild.jave.info;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,11 @@ import java.util.Map;
  * @author Carlo Pelliccia
  */
 public class MultimediaInfo {
+
+    /**
+     * The multimedia file
+     */
+    private File file;
 
     /**
      * The multimedia file format name.
@@ -152,6 +158,15 @@ public class MultimediaInfo {
      */
     public MultimediaInfo setVideo(VideoInfo video) {
         this.video = video;
+        return this;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public MultimediaInfo setFile(File file) {
+        this.file = file;
         return this;
     }
 
