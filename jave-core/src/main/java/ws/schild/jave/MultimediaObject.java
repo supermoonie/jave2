@@ -158,7 +158,7 @@ public class MultimediaObject {
      * @throws EncoderException     If a problem occurs calling the underlying ffmpeg executable.
      */
     public MultimediaInfo getInfo() throws InputFormatException, EncoderException {
-        if (isURL() || inputFile.canRead()) {
+        if (isURL() || inputFile.exists()) {
             ProcessWrapper ffmpeg = locator.createExecutor();
             ffmpeg.addArgument("-i");
             ffmpeg.addArgument(toString());
@@ -231,6 +231,7 @@ public class MultimediaObject {
                         if (m.matches()) {
                             String format = m.group(1);
                             info = new MultimediaInfo();
+                            info.setMultimediaObject(this);
                             info.setFile(inputFile);
                             info.setFormat(format);
                             step++;

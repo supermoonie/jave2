@@ -18,6 +18,8 @@
  */
 package ws.schild.jave.info;
 
+import ws.schild.jave.MultimediaObject;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +30,11 @@ import java.util.Map;
  * @author Carlo Pelliccia
  */
 public class MultimediaInfo {
+
+    /**
+     * The multimedia object
+     */
+    private MultimediaObject multimediaObject;
 
     /**
      * The multimedia file
@@ -159,6 +166,14 @@ public class MultimediaInfo {
     public MultimediaInfo setVideo(VideoInfo video) {
         this.video = video;
         return this;
+    }
+
+    public MultimediaObject getMultimediaObject() {
+        return multimediaObject;
+    }
+
+    public void setMultimediaObject(MultimediaObject multimediaObject) {
+        this.multimediaObject = multimediaObject;
     }
 
     public File getFile() {
