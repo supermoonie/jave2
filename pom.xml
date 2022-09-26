@@ -4,25 +4,25 @@
     <artifactId>jave-modules</artifactId>
     <packaging>pom</packaging>
     <properties>
-        <revision>3.3.1</revision>
+        <revision>3.3.2</revision>
         <!-- Don't forget to change it also in DefaultFFMPEGLocator.java  -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <version>3.3.1</version>
+    <version>3.3.2</version>
     <name>Jave master project</name>
     <description>Jave master project</description>
     <url>https://github.com/a-schild/jave2</url>
-    
+
     <licenses>
         <license>
             <name>GPL-v3.0</name>
             <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
         </license>
     </licenses>
-  
+
     <scm>
         <connection>scm:git:https://github.com/a-schild/jave2</connection>
         <url>https://github.com/a-schild/jave2</url>
@@ -62,5 +62,5 @@
         <module>jave-example</module>
         <module>jave-all-deps</module>
     </modules>
-    
+
 </project>

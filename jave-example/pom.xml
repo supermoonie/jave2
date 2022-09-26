@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ws.schild</groupId>
     <packaging>jar</packaging>
-    <version>3.3.1</version>
+    <version>3.3.2</version>
     <artifactId>jave-example</artifactId>
     <properties>
         <maven.compiler.source>12</maven.compiler.source>
@@ -23,7 +23,7 @@
                     <include>**/*.properties</include>
                 </includes>
             </resource>
-        </resources>        
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -52,7 +52,7 @@
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>            
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -66,13 +66,13 @@
         <dependency>
             <groupId>ws.schild</groupId>
             <artifactId>jave-core</artifactId>
-            <version>3.3.1</version>
-        </dependency>    
+            <version>3.3.2</version>
+        </dependency>
         <dependency>
             <groupId>ws.schild</groupId>
             <artifactId>jave-nativebin-linux32</artifactId>
-            <version>3.3.1</version>
-        </dependency>    
+            <version>3.3.2</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
         <dependency>
             <groupId>org.slf4j</groupId>
