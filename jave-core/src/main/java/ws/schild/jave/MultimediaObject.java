@@ -280,7 +280,7 @@ public class MultimediaObject {
                         if (m.matches()) {
                             String type = m.group(1);
                             String specs = m.group(2);
-                            if ("Video".equalsIgnoreCase(type)) {
+                            if ("Video".equalsIgnoreCase(type) && line.contains("fps")) {
                                 VideoInfo video = new VideoInfo();
                                 StringTokenizer st = new StringTokenizer(specs, ",");
                                 for (int i = 0; st.hasMoreTokens(); i++) {
